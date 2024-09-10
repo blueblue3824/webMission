@@ -12,7 +12,7 @@
 </head>
 <body>
 <%
-String sql = "Select bno,bsub,bwriter,bmemo,bdate,cnt from board1";
+String sql = "Select bno,bsub,bwriter,bmemo,bdate,cnt from board1 order by bno desc";
 Class.forName("oracle.jdbc.driver.OracleDriver");
 String url = "jdbc:oracle:thin:@localhost:1521:xe";
 String user = "hr";
@@ -39,7 +39,7 @@ ResultSet rs = stmt.executeQuery(sql);
 %>
 	<tr>
 		<td><%=rs.getInt("bno") %></td>
-		<td><a href="boardDetail.jsp"><%=rs.getString("bsub") %></a></td>
+		<td><a href="boardDetail.jsp?c=<%=rs.getInt("bno") %>"><%=rs.getString("bsub") %></a></td>
 		<td><%=rs.getString("bwriter") %></td>
 		<td><%=rs.getString("bmemo") %></td>
 		<td><%=rs.getTimestamp("bdate") %></td>

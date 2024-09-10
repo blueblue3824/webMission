@@ -1,8 +1,7 @@
-<%@page import="java.sql.ResultSetMetaData"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
-<%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Statement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,10 +9,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../css/addstyle.css" />
 </head>
 <body>
-<h3>Board Detail.jsp</h3>
+<h3>Board Edit</h3>
+
 <%
 String bno = request.getParameter("c");
 String sql = "select bno,bsub,bwriter,bmemo,bdate,cnt from board1 where bno=" + bno;
@@ -28,17 +27,19 @@ Statement stmt = con.createStatement();
 ResultSet rs = stmt.executeQuery(sql);
 rs.next();
 %>
-<table class="twidth">
+
+<form action="boardEditProc.jsp" method="post">
+<table>
 	<colgroup>
 		<col width="15%"/>
 		<col width="35%"/>
 		<col width="15%"/>
 		<col width="35%"/>
 	</colgroup>
-	<caption>Board Detail</caption>
+	<caption>Detail</caption>
 	<tbody>
 		<tr>
-			<th class="left">글 번호</th>
+			<th class="left">글번호</th>
 			<td><%=rs.getInt("bno") %></td>
 			<th class="left">조회수</th>
 			<td><%=rs.getInt("cnt") %></td>
@@ -47,31 +48,36 @@ rs.next();
 			<th class="left">작성자</th>
 			<td><%=rs.getString("bwriter") %></td>
 			<th class="left">작성시간</th>
-			<td><%=rs.getDate("bdate") %></td>
+			<td><%=rs.getTimestamp("bdate") %></td>
+		</tr>
+		<tr>
+			<th class="left">제목</th>
+			<td colspan="3">
+				<input type="text" class="bsub" name="bsub" value="<%=rs.getString("bsub") %>" />
+			
+			</td>
+			
 		</tr>
 		<tr>
 			<th class="left">내용</th>
-			<td colspan="3" id="content"><%=rs.getString("bmemo") %></td>
+			<td colspan="3" id="bmemo">
+				<textarea name="bmemo"><%=rs.getString("bmemo") %></textarea>
+
+			</td>
 			
 		</tr>
-		<tr>
-			<th class="left">첨부</th>
-			<td colspan="3">첨부</td>
-			
-		</tr>
+
 	
 	</tbody>
 </table>
-<a href="board.jsp">목록</a>
-<a href="boardEdit.jsp?c=<%=rs.getInt("bno") %>">글 수정</a>
+
+<input type="hidden" id="bno" name="bno" value="<%=rs.getInt("bno") %>" />
+<input type="submit" value="수정완료" />
+<a href="boardDetail.jsp?c=<%=rs.getInt("bno") %>">취소</a>
+</form>
+
 
 
 
 </body>
 </html>
-
-<%
-rs.close();
-stmt.close();
-con.close();
-%>

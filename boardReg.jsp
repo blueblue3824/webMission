@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form action="boardRegPro.jsp">
-		글 제목 : <input type="text" id="bsub" name="bmemo"/> <br />	
+		글 제목 : <input type="text" id="bsub" name="bsub"/> <br />	
 		메모 : <br />
 		<textarea name="bmemo" id="bmemo" cols="30" rows="10"></textarea> <br />
 		<input type="submit" value="작성완료" />
