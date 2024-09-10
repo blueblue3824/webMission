@@ -8,7 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title here</title>'
+<link rel="stylesheet" href="../css/addstyle.css" />
 </head>
 <body>
 <h3>Board Edit</h3>
@@ -75,9 +76,11 @@ rs.next();
 <input type="submit" value="수정완료" />
 <a href="boardDetail.jsp?c=<%=rs.getInt("bno") %>">취소</a>
 </form>
-
-
-
-
 </body>
 </html>
+
+<%
+rs.close();
+stmt.close();
+con.close();
+%>

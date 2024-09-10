@@ -32,6 +32,7 @@ ResultSet rs = stmt.executeQuery(sql);
 		<td>메모</td>
 		<td>작성일</td>
 		<td>조회수</td>
+		<td></td>
 	</tr>
 
 <%
@@ -44,6 +45,7 @@ ResultSet rs = stmt.executeQuery(sql);
 		<td><%=rs.getString("bmemo") %></td>
 		<td><%=rs.getTimestamp("bdate") %></td>
 		<td><%=rs.getInt("cnt") %></td>
+		<td style="background-color: lightgray;"><a href="boardEdit.jsp?c=<%=rs.getInt("bno") %>">글 수정</a></td>
 	</tr>
 <%			
 	}
@@ -54,3 +56,8 @@ ResultSet rs = stmt.executeQuery(sql);
 
 </body>
 </html>
+<%
+rs.close();
+stmt.close();
+conn.close();
+%>

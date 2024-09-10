@@ -50,21 +50,20 @@ rs.next();
 			<td><%=rs.getDate("bdate") %></td>
 		</tr>
 		<tr>
-			<th class="left">내용</th>
-			<td colspan="3" id="content"><%=rs.getString("bmemo") %></td>
-			
+			<th class="left">제목</th>
+			<td colspan="3" id="bsub"><%=rs.getString("bsub") %></td>
 		</tr>
 		<tr>
-			<th class="left">첨부</th>
-			<td colspan="3">첨부</td>
+			<th class="left">내용</th>
+			<td colspan="3" id="content"><%=rs.getString("bmemo") %></td>
 			
 		</tr>
 	
 	</tbody>
 </table>
 <a href="board.jsp">목록</a>
-<a href="boardEdit.jsp?c=<%=rs.getInt("bno") %>">글 수정</a>
-
+<a href="boardEdit.jsp?c=<%=rs.getInt("bno") %>">수정</a>
+<a href="boardDelPro.jsp?c=<%=rs.getInt("bno") %>">삭제</a>
 
 
 </body>
